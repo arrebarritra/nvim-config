@@ -9,52 +9,36 @@
 
 local M = {}
 
-local home = os.getenv("HOME")
+local home = os.getenv("HOME") or os.getenv("USERPROFILE")
 
 M.adapter = {
   id = 'cppdbg',
   type = 'executable',
-  command = home .. '/.local/share/cpptools/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+  command = home .. '/.vscode/extensions/ms-vscode.cpptools-1.32.2-win32-x64/debugAdapters/bin/OpenDebugAD7.exe',
 }
 
 M.config = {
   {
     name = "Launch file",
     type = "cppdbg",
-    args = function()
-      local args_string = vim.fn.input("Input arguments: ")
-      return vim.split(args_string, " ")
-    end,
     request = "launch",
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      local cmd = vim.fn.input("Launch cmd: ", vim.fn.getcwd() .. "\\", "shellcmdline")
+      local parts = vim.split(cmd, "%s+", { trimempty = true })
+
+      cmd_cache = parts
+      return parts[1]
     end,
-    cwd = '${workspaceFolder}',
+
+    args = function()
+      if not cmd_cache then return {} end
+
+      local args = vim.deepcopy(cmd_cache)
+      table.remove(args, 1)
+      return args
+    end,
+    cwd = vim.fn.getcwd(),
     stopOnEntry = true,
-    setupCommands = {
-      {
-        text = '-enable-pretty-printing',
-        description = 'Enable pretty printing',
-        ignoreFailures = false
-      },
-    },
-  },
-  {
-    name = "Attach to gdbserver :1234",
-    type = "cppdbg",
-    request = "launch",
-    args = function()
-      local args_string = vim.fn.input("Input arguments: ")
-      return vim.split(args_string, " ")
-    end,
-    program = function()
-      return vim.fn.input('Path to local executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    miMode = 'gdb',
-    miDebuggerServerAddress = 'localhost:1234',  -- gdbserver address
-    miDebuggerPath = '/usr/bin/gdb',
-    stopOnEntry = false,
     setupCommands = {
       {
         text = '-enable-pretty-printing',
