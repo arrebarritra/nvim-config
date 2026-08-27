@@ -21,10 +21,9 @@ return {
 
 	{
 		"nvim-treesitter/nvim-treesitter-context",
-		config = function()
-			require("treesitter-context").setup()
-		end,
-	},
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        lazy = false,
+    },
 
 	{
 		"nvim-tree/nvim-tree.lua",
