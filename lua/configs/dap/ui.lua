@@ -1,4 +1,4 @@
-local dap, dapui = require("dap"), require("dapui")
+local dap, dapui, dapvt = require("dap"), require("dapui"), require("nvim-dap-virtual-text")
 
 -- open / close ui windows automatically
 dap.listeners.after.event_initialized["dapui_config"] = function()
