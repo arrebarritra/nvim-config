@@ -27,6 +27,8 @@ map("n", "<Leader>pk", "<cmd>Telescope keymaps<CR>", { desc = "Show keymaps" })
 map("n", "<Leader>dl", "<cmd>lua require'dap'.step_into()<CR>", { desc = "Debugger step into" })
 map("n", "<Leader>dj", "<cmd>lua require'dap'.step_over()<CR>", { desc = "Debugger step over" })
 map("n", "<Leader>dk", "<cmd>lua require'dap'.step_out()<CR>", { desc = "Debugger step out" })
+map("n", "<Leader>dJ", "<cmd>lua require'dap'.down()<CR>", { desc = "Debugger down" })
+map("n", "<Leader>dK", "<cmd>lua require'dap'.up()<CR>", { desc = "Debugger up" })
 map("n", "<Leader>d<space>", "<cmd>lua require'dap'.continue()<CR>", { desc = "Debugger continue" })
 map("n", "<Leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Debugger toggle breakpoint" })
 map(
@@ -41,6 +43,7 @@ map("n", "<Leader>dr", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Debugge
 -- DAP UI
 map("n", "<Leader>duu", "<cmd>lua require'dapui'.open()<CR>", { desc = "Debugger open UI" })
 map("n", "<Leader>duc", "<cmd>lua require'dapui'.close()<CR>", { desc = "Debugger close UI" })
+map("n", "<Leader>due", "<cmd>lua require'dapui'.eval()<CR>", { desc = "Debugger evaluate expression" })
 
 -- Terminal
 map({ "n", "t" }, "<C-\\>", function()
