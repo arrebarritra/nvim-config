@@ -6,13 +6,11 @@ require("configs.dap.ui")
 -- debuggers
 local gdb = require("configs.dap.adapters.gdb")
 local cppdbg = require("configs.dap.adapters.cppdbg")
-local pythondbg = require("configs.dap.adapters.python")
+require("dap-python").setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
 
 dap.adapters.gdb = gdb.adapter
 dap.adapters.cppdbg = cppdbg.adapter
--- dap.adapters.python = pythondbg.adapter
 
 dap.configurations.c = gdb.config
 dap.configurations.cpp = cppdbg.config
 dap.configurations.rust = gdb.config
--- dap.configurations.python = pythondbg.config
