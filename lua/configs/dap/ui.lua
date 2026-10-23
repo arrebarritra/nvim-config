@@ -10,3 +10,9 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
 	dapui.close()
 end
+
+dap.listeners.after.disconnect["virtual_text_cleanup"] = function()
+	vim.schedule(function()
+		pcall(vim.cmd, "DapVirtualTextForceRefresh")
+	end)
+end
