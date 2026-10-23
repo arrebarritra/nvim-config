@@ -21,9 +21,9 @@ return {
 
 	{
 		"nvim-treesitter/nvim-treesitter-context",
-        dependencies = "nvim-treesitter/nvim-treesitter",
-        lazy = false,
-    },
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		lazy = false,
+	},
 
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -98,6 +98,10 @@ return {
 			require("nvim-dap-virtual-text").setup()
 		end,
 		dependencies = { "mfussenegger/nvim-dap", "nvim-dap-ui" },
+	},
+
+	{
+		"mfussenegger/nvim-dap-python",
 	},
 
 	-- better bdelete, close buffers without closing windows
