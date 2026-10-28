@@ -31,6 +31,7 @@ map("n", "<Leader>dJ", "<cmd>lua require'dap'.down()<CR>", { desc = "Debugger do
 map("n", "<Leader>dK", "<cmd>lua require'dap'.up()<CR>", { desc = "Debugger up" })
 map("n", "<Leader>d<space>", "<cmd>lua require'dap'.continue()<CR>", { desc = "Debugger continue" })
 map("n", "<Leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Debugger toggle breakpoint" })
+map("n", "<Leader>dc", "<cmd>lua require'dap'.run_to_cursor()<CR>", { desc = "Debugger run to cursor" })
 map(
 	"n",
 	"<Leader>dd",
