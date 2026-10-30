@@ -1,27 +1,20 @@
 require("nvchad.mappings")
 
+-- Clear unwanted nvchad mappings
+local nomap = vim.keymap.del
+nomap("n", "<Leader>x")
+
 local map = vim.keymap.set
 
 -- General
 -- map("n", ";", ":", { nowait = true, desc = "Command mode" })
+map("n", "<Leader>x", "<cmd>tabc<CR>")
 map("x", "<Leader>p", [["_dP]], { desc = "Paste without replacing clipboard" })
 map("n", "C-f", ":Format<CR>", { desc = "Format file" })
 map("n", "<Leader>s", ":ClangdSwitchSourceHeader<CR>", { desc = "Switch between header and source file" })
 
 -- Telescope
 map("n", "<C-p>", "<cmd>Telescope git_files<CR>", { desc = "Find files in version control" })
-map("n", "<Leader>pf", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
-map(
-	"n",
-	"<Leader>pfa",
-	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-	{ desc = "Find all files" }
-)
-map("n", "<Leader>pg", "<cmd>Telescope live_grep<CR>", { desc = "Grep files" })
-map("n", "<Leader>pb", "<cmd>Telescope buffers<CR>", { desc = "Find buffers" })
-map("n", "<Leader>ph", "<cmd>Telescope help_tags<CR>", { desc = "Help page" })
-map("n", "<Leader>po", "<cmd>Telescope oldfiles<CR>", { desc = "Find oldfiles" })
-map("n", "<Leader>pk", "<cmd>Telescope keymaps<CR>", { desc = "Show keymaps" })
 
 -- Nvim DAP
 map("n", "<Leader>dl", "<cmd>lua require'dap'.step_into()<CR>", { desc = "Debugger step into" })
