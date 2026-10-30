@@ -15,6 +15,12 @@ return {
 	},
 
 	{
+		"jay-babu/mason-nvim-dap.nvim",
+		opts = overrides.masonnvimdap,
+		lazy = false,
+	},
+
+	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = { "neovim-treesitter/treesitter-parser-registry" },
 		lazy = false,

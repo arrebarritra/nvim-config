@@ -57,6 +57,11 @@ M.mason = {
 	},
 }
 
+M.masonnvimdap = {
+	ensure_installed = { "cppdbg", "codelldb", "python", "js", "node2" },
+	automatic_installation = true,
+}
+
 -- git support in nvimtree
 M.nvimtree = {
 	git = {
