@@ -51,7 +51,7 @@ M.config = {
 		request = "launch",
 		program = function()
 			local p, a = get_command()
-			print("Program: { ", p, " } Args: { ", table.concat(a), " }")
+			print("Program: { ", p, " } Args: { ", table.concat(a, " "), " }")
 			return p
 		end,
 		args = function()
