@@ -51,6 +51,8 @@ M.config = {
 		end,
 		cwd = "${workspaceFolder}",
 		stopOnEntry = true,
+		MIMode = "gdb",
+		miDebuggerPath = "C:/msys64/ucrt64/bin/gdb.exe",
 		setupCommands = {
 			{
 				text = "-enable-pretty-printing",

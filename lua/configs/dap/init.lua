@@ -20,5 +20,5 @@ dap.adapters.cppdbg = cppdbg.adapter
 dap.adapters.codelldb = codelldb.adapter
 
 dap.configurations.c = is_windows and cppdbg.config or gdb.config
-dap.configurations.cpp = is_windows and codelldb.config or cppdbg.config
+dap.configurations.cpp = is_windows and cppdbg.config or cppdbg.config
 dap.configurations.rust = cppdbg.config

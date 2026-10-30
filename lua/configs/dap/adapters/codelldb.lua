@@ -9,6 +9,9 @@ M.adapter = {
 	options = {
 		detached = false,
 	},
+	env = {
+		LLDB_USE_NATIVE_PDB_READER = "1",
+	},
 }
 
 local cmd
@@ -48,8 +51,11 @@ M.config = {
 			local _, a = get_command()
 			return a
 		end,
-		cwd = "${workspaceFolder}",
-		stopOnEntry = true,
+		cwd = function()
+			return vim.fn.getcwd()
+		end,
+		stopOnEntry = false,
+		terminal = "integrated",
 	},
 }
 
