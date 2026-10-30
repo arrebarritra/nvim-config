@@ -9,12 +9,16 @@
 
 local M = {}
 
-local home = os.getenv("HOME")
+local path_sep = package.config:sub(1, 1)
+local is_windows = path_sep == "\\"
 
 M.adapter = {
 	id = "cppdbg",
 	type = "executable",
-	command = home .. "/.local/share/cpptools/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
+	command = vim.fn.stdpath("data") .. "/mason/bin/OpenDebugAD7" .. (is_windows and ".cmd" or ""),
+	options = {
+		detached = false,
+	},
 }
 
 local cmd
@@ -22,7 +26,7 @@ local program
 local args
 local function get_command()
 	if not cmd then
-		cmd = vim.fn.input("Launch cmd: ", vim.fn.getcwd() .. "/", "shellcmdline")
+		cmd = vim.fn.input("Launch cmd: ", vim.fn.getcwd() .. path_sep, "shellcmdline")
 
 		local parts = vim.split(cmd, "%s+", { trimempty = true })
 
@@ -73,7 +77,7 @@ M.config = {
 			return vim.split(args_string, " ")
 		end,
 		program = function()
-			return vim.fn.input("Path to local executable: ", vim.fn.getcwd() .. "/", "file")
+			return vim.fn.input("Path to local executable: ", vim.fn.getcwd() .. path_sep, "file")
 		end,
 		cwd = "${workspaceFolder}",
 		miMode = "gdb",
