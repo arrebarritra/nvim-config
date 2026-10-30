@@ -84,7 +84,7 @@ map("n", "<Leader>t", "<Plug>PlenaryTestFile", { desc = "Run plenary test on fil
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opts)
 
--- AutoSession - wait to solve errors
--- map("n", "<leader>gr", "<cmd>AutoSession search<CR>", { desc = "Session search" })
--- map("n", "<leader>gs", "<cmd>AutoSession save<CR>", { desc = "Save session" })
--- map("n", "<leader>ga", "<cmd>AutoSession toggle<CR>", { desc = "Toggle autosave" })
+-- AutoSession
+map("n", "<leader>gr", "<cmd>AutoSession search<CR>", { desc = "Session search" })
+map("n", "<leader>gs", "<cmd>AutoSession save<CR>", { desc = "Save session" })
+map("n", "<leader>ga", "<cmd>AutoSession toggle<CR>", { desc = "Toggle autosave" })
