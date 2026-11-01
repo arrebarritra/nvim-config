@@ -7,7 +7,19 @@ declare module vsda {
 		validate(arg: string): 'ok' | 'error';
 	}
 }
-const vsda_location = os.getenv('LOCALAPPDATA') .. '/resources/app/node_modules.asar.unpacked/vsda/build/Release/vsda.node');
+const path = require("path");
+const vsda_location = path.join(
+    process.env.LOCALAPPDATA,
+    "Programs",
+    "Microsoft VS Code",
+    "resources",
+    "app",
+    "node_modules",
+    "vsda",
+    "build",
+    "Release",
+    "vsda.node"
+);
 const a: typeof vsda = require(vsda_location);
 const signer: vsda.signer = new a.signer();
 process.argv.forEach((value, index, array) => {

@@ -9,13 +9,17 @@ local function send_payload(client, payload)
 end
 
 function RunHandshake(self, request_payload)
-	local signResult = io.popen("node ../../../../js/sign.js " .. request_payload.arguments.value)
+	local signResult = io.popen("tsx " .. vim.fn.stdpath("config") .. "/js/sign.ts " .. request_payload.arguments.value)
 	if signResult == nil then
 		utils.notify("error while signing handshake", vim.log.levels.ERROR)
 		return
 	end
 	local signature = signResult:read("*a")
 	signature = string.gsub(signature, "\n", "")
+	if signature == "" then
+		utils.notify("error while signing handshake", vim.log.levels.ERROR)
+		return
+	end
 	local response = {
 		type = "response",
 		seq = 0,
@@ -32,7 +36,6 @@ end
 local M = {}
 
 local path_sep = package.config:sub(1, 1)
-local is_windows = vim.fn.has("win32") == 1
 
 M.adapter = {
 	id = "cppvsdbg",
