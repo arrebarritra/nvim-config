@@ -13,12 +13,14 @@ if not is_windows then
 	dap.adapters.gdb = gdb.adapter
 end
 local cppdbg = require("configs.dap.adapters.cppdbg")
+local cppvsdbg = require("configs.dap.adapters.cppvsdbg")
 local codelldb = require("configs.dap.adapters.codelldb")
 require("dap-python").setup(vim.fn.stdpath("data") .. "/mason/bin/debugpy" .. (is_windows and ".cmd" or ""))
 
 dap.adapters.cppdbg = cppdbg.adapter
+dap.adapters.cppvsdbg = cppvsdbg.adapter
 dap.adapters.codelldb = codelldb.adapter
 
-dap.configurations.c = is_windows and cppdbg.config or gdb.config
-dap.configurations.cpp = is_windows and codelldb.config or cppdbg.config
-dap.configurations.rust = cppdbg.config
+dap.configurations.c = is_windows and cppvsdbg.config or gdb.config
+dap.configurations.cpp = is_windows and cppvsdbg.config or cppdbg.config
+dap.configurations.rust = is_windows and cppvsdbg.config or cppdbg.config
